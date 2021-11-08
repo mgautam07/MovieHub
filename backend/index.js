@@ -1,11 +1,15 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import mongoose from 'mongoose'
-import { getLatest } from './functions.js'
+import { getLatest, getNetflixOriginalsMovies, getNetflixOriginalsTV, getTrending, getUpcoming } from './functions.js'
 
 // Configuring .env file
 dotenv.config();
-let data
+let trending
+let latest
+let upcoming
+let netflixMovies
+let netflixTV
 // Connecting to db
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -20,7 +24,7 @@ mongoose.connect(process.env.MONGO_URI, {
 const app = express()
 
 app.get('/', (req, res) => {
-  res.send(data)
+  res.send({upcoming, latest, trending})
 })
 
 app.get('/prime', (req, res) => {
@@ -28,11 +32,15 @@ app.get('/prime', (req, res) => {
 })
 
 app.get('/netflix', (req, res) => {
-  res.send('Hello netflix!')
+  res.send({ netflixMovies, netflixTV})
 })
 
 app.listen(3000 || process.env.PORT, async () => {
   console.log(`Example app listening at http://localhost:3000`)
-  data = await getLatest();    
-  console.log(data)
+  trending = await getTrending();
+  latest = await getLatest()
+  upcoming = await getUpcoming()
+  netflixMovies = await getNetflixOriginalsMovies()
+  netflixTV = await getNetflixOriginalsTV()
+  // console.log(data)
 })
