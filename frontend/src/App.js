@@ -1,5 +1,5 @@
 import './App.css';
-import http from "../http-common";
+import http from "./http-common";
 import Home from './components/Home/Home.js'
 import Footer from './components/Footer.js';
 import NavBar from './components/Navbar.js';

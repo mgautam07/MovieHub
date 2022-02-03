@@ -13,6 +13,7 @@ export async function getLatest() {
     let response = []
     for (let i = 0; i < 10; i++) {
        response.push(await fetch('https://api.themoviedb.org/3/movie/latest/day?api_key=' + process.env.MDB_API)) 
+    //    console.log(await fetch('https://api.themoviedb.org/3/movie/latest/day?api_key=' + process.env.MDB_API));
     }
     return response;
 }
@@ -29,6 +30,11 @@ export async function getNetflixOriginalsMovies() {
 
 export async function getNetflixOriginalsTV() {
     const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + process.env.MDB_API + '&with_networks=213');
+    return response.json();
+}
+
+export async function getNowPlaying(pageNo = 1){
+    const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=' + process.env.MDB_API + '&page='+ pageNo +'&region=us');
     return response.json();
 }
 

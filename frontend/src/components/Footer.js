@@ -6,9 +6,9 @@ export default function Footer() {
 //   <div>
         <footer>
             {/* <!-- 272222 --> */}
-            <i class="fab fa-youtube"></i>
-            <i class="fab fa-github"></i>
-            <i class="fab fa-linkedin"></i>
+            <i className="fab fa-youtube"></i>
+            <i className="fab fa-github"></i>
+            <i className="fab fa-linkedin"></i>
         </footer>
   )
 }

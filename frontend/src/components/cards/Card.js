@@ -14,28 +14,28 @@ function card(props) {
   // console.log(classes)
   return(
     <div className={classes}>
-        <div class="info_section">
-          <div class="movie_header">
-            <img class="locandina" src={linkk}/>
+        <div className="info_section">
+          <div className="movie_header">
+            <img className="locandina" src={linkk}/>
             <h1>{props.movie.original_title}</h1>
             <h4>{props.movie.release_date}</h4>
-            <span class="minutes">{props.movie.vote_average}</span>
-            <p class="type">Action, Crime, Fantasy</p>
+            <span className="minutes">{props.movie.vote_average}</span>
+            <p className="type">Action, Crime, Fantasy</p>
           </div>
-          <div class="movie_desc">
-            <p class="text">
+          <div className="movie_desc">
+            <p className="text">
             {props.movie.overview}
             </p>
           </div>
-          {/* <div class="movie_social">
+          {/* <div className="movie_social">
             <ul>
-            <li><i class="material-icons">share</i></li>
-            <li><i class="material-icons"></i></li>
-            <li><i class="material-icons">chat_bubble</i></li>
+            <li><i className="material-icons">share</i></li>
+            <li><i className="material-icons"></i></li>
+            <li><i className="material-icons">chat_bubble</i></li>
           </ul>
         </div> */}
       </div>
-      <div class="blur_back" style={{ 
+      <div className="blur_back" style={{ 
       backgroundImage: `url(${linkk})`
     }}></div>
     </div>

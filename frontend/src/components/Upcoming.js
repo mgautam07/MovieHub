@@ -5,22 +5,21 @@ import Card from './cards/Card'
 function Upcoming() {
   const [movie, setMovie] = useState([]);
   useEffect(() => {
-    const req = axios.get('/upcoming').then(result => { console.log(result.data.results);
+    const req = axios.get('/upcoming').then(result => { 
+      // console.log(result.data.results);
       setMovie(result.data.results);
       return result.data.results; })
     // console.log(req.data);
   }, []);
 
-  return( <>
-    <section>
+  return(
       <div className='cards'>
-      {movie.map((move, index) => (
-      <Card movie={move} index={index}/>
-      ))}
-
+        {movie.map((move, index) => (
+          <div key={index}>
+            <Card movie={move} index={index}/>
+          </div>
+        ))}
       </div>
-    </section>  
-    </>
   )
 }
 
