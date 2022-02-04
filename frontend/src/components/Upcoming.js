@@ -5,7 +5,7 @@ import Card from './cards/Card'
 function Upcoming() {
   const [movie, setMovie] = useState([]);
   useEffect(() => {
-    const req = axios.get('/upcoming').then(result => { 
+    axios.get('/upcoming').then(result => { 
       // console.log(result.data.results);
       setMovie(result.data.results);
       return result.data.results; })

@@ -23,10 +23,10 @@ export async function getUpcoming() {
     return response.json();
 }
 
-export async function getNetflixOriginalsMovies() {
-    const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=' + process.env.MDB_API + '&with_networks=213');
-    return response.json();
-}
+// export async function getNetflixOriginalsMovies() {
+//     const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=' + process.env.MDB_API + '&with_networks=213');
+//     return response.json();
+// }
 
 export async function getNetflixOriginalsTV() {
     const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + process.env.MDB_API + '&with_networks=213');
@@ -38,14 +38,15 @@ export async function getNowPlaying(pageNo = 1){
     return response.json();
 }
 
-// export async function getNetflixOriginalsMovies() {
-//     const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=' + process.env.MDB_API + '&with_networks=213');
-//     return response.json();
-// }
+export async function getPrime() {
+    const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + process.env.MDB_API + '&language=en-US&with_networks=1024');
+// https://api.themoviedb.org/3/discover/tv?api_key= &language=en-US&with_networks=1024
+    return response.json();
+}
 
 // export async function getNetflixOriginalsTV() {
 //     const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + process.env.MDB_API + '&with_networks=213');
 //     return response.json();
 // }
-
+// marvel
 // https://api.themoviedb.org/3/discover/movie?api_key=b06455dbf04e1988b5d26bd89ee42e00&language=en-US&sort_by=primary_release_date.desc&page=1&with_companies=420|19551|38679|2301|13252
