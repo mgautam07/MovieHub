@@ -9,14 +9,14 @@ function Form() {
       <div className="main-form">
         <div className="form-text">Enter a name of a movie</div>
         <input className="form-field" type="text" name="movie1" id="movie1" required autoComplete='off'/>
-        <div className="form-text">Enter a name of a movie</div>
+        {/* <div className="form-text">Enter a name of a movie</div>
         <input className="form-field" type="text" name="movie2" id="movie2" required autoComplete='off'/>
         <div className="form-text">Enter a name of a movie</div>
         <input className="form-field" type="text" name="movie3" id="movie3" required autoComplete='off'/>
         <div className="form-text">Enter a name of a movie</div>
         <input className="form-field" type="text" name="movie4" id="movie4" required autoComplete='off'/>
         <div className="form-text">Enter a name of a movie</div>
-        <input className="form-field" type="text" name="movie5" id="movie5" required autoComplete='off'/>
+        <input className="form-field" type="text" name="movie5" id="movie5" required autoComplete='off'/> */}
       </div>
       <input className="btn" type="submit" />
       <input className="btn" type="reset" />

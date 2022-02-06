@@ -3,7 +3,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import { Recoms } from './recoms.js'
 // import cors from 'cors'
-import { getLatest, getPrime, getNetflixOriginalsTV, getNowPlaying, getTrending, getUpcoming } from './functions.js'
+import { getLatest, getPrime, getNetflixOriginalsTV, getNowPlaying, getTrending, getUpcoming, recommendation } from './functions.js'
 
 // Configuring .env file
 dotenv.config();
@@ -35,6 +35,10 @@ app.get('/home', (req, res) => {
   res.send({nowPlaying, trending})
 })
 
+app.get('/trending', (req, res) => {
+  res.send(trending);
+})
+
 app.get('/upcoming', (req,res) => {
   res.send(upcoming);
 })
@@ -48,13 +52,15 @@ app.get('/netflix', (req, res) => {
 })
 
 app.post('/recommendation', (req, res) => {
-  const recom = new Recoms(req.body);
+  // const recom = new Recoms(req.body);
   console.log(req.body);
 
-  recom.save()
-  .then((result) => {
-    console.log(result)
-  })
+  const dat = recommendation(req.body);
+  // console.log(dat);
+  // recom.save()
+  // .then((result) => {
+  //   console.log(result)
+  // })
 })
 
 app.listen(3000 || process.env.PORT, async () => {

@@ -16,6 +16,7 @@ function CardController() {
     function changeNetflix(){
       axios.get('/netflix').then(result => {
         setTrending(result.data.results)
+        console.log(result.data.results);
       })}
 
     function changePrime(){
@@ -23,15 +24,15 @@ function CardController() {
         setTrending(result.data.results)
     })}
 
-    function changeTrend(){
-      axios.get('/home').then(result => {
-        setTrending(result.data.trending.results)
+    function changeTrending(){
+      axios.get('/trending').then(result => {
+        setTrending(result.data.results)
     })}
 
     useEffect(() => {
       axios.get('/home').then(result => { 
         console.log('t');
-        // setTrending(result.data.trending.results);
+        setTrending(result.data.trending.results);
         // console.log(result.data.trending.results);
         setNowPlaying(result.data.nowPlaying.results);
         return; })
@@ -50,9 +51,9 @@ function CardController() {
       </Grid>
 
     <Container sx={{display: 'flex', alignItems: 'center'}} spacing={2} direction="row">
-      <Button sx={{ml: 2, mr: 1}} key='one'variant="outlined" >Trending</Button>
-      <Button sx={{ml: 1, mr: 1}} key='two' variant="outlined" onClick={changeNetflix()}>Netflix</Button>
-      <Button sx={{ml: 1, mr: 1}} key='three' variant="outlined" onClick={changePrime()}>Prime Video</Button>
+      <Button sx={{ml: 2, mr: 1}} key='one'variant="outlined" onClick={() => {changeTrending()}}>Trending</Button>
+      <Button sx={{ml: 1, mr: 1}} key='two' variant="outlined" onClick={() => {changeNetflix()}}>Netflix</Button>
+      <Button sx={{ml: 1, mr: 1}} key='three' variant="outlined" onClick={() => {changePrime()}}>Prime Video</Button>
     </Container>
       
 

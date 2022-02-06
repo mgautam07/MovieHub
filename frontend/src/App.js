@@ -24,7 +24,7 @@ function App() {
         <Route exact path='/signin' element={<Signin />} />
       </Routes>
     </BrowserRouter>
-    <Footer/>
+    {/* <Footer/> */}
     </>
   );
 }

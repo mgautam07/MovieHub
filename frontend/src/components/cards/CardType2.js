@@ -3,7 +3,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Grid } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 
 function CardType2(props) {
   const linkk = "https://image.tmdb.org/t/p/w500/" + props.movie.backdrop_path;
@@ -20,14 +21,19 @@ function CardType2(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5">
-            {props.movie.original_title}
+            {props.movie.original_title || props.movie.original_name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {props.movie.release_date}
+            {props.movie.release_date || props.movie.first_air_date}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Grid container columnSpacing={1} direction='row' alignItems='center'>
+            <Grid item>
             {props.movie.vote_average}
-          </Typography>
+            </Grid>
+            <Grid item>
+             <StarIcon color='warning'/>
+            </Grid>
+          </Grid>
         </CardContent>
       </CardActionArea>
     </Card>
