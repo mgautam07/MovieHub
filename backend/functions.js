@@ -5,14 +5,14 @@ import fetch from 'node-fetch'
 dotenv.config();
 
 export async function getTrending() {
-    const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=' + process.env.MDB_API + '&language=en-US');
+    const response = await fetch('https://api.themoviedb.org/3/trending/movie/week?api_key=' + process.env.MDB_API + '&language=en-US');
     return response.json();
 }
 
 export async function getLatest() {
     let response = []
     for (let i = 0; i < 10; i++) {
-       response.push(await fetch('https://api.themoviedb.org/3/movie/latest/day?api_key=' + process.env.MDB_API + '&language=en-US')) 
+       response.push(await fetch('https://api.themoviedb.org/3/movie/latest/week?api_key=' + process.env.MDB_API + '&language=en-US')) 
     //    console.log(await fetch('https://api.themoviedb.org/3/movie/latest/day?api_key=' + process.env.MDB_API));
     }
     return response;
