@@ -2,23 +2,70 @@ import React, {useEffect, useState} from 'react';
 import Grid from '@mui/material/Grid';
 import CardType2 from './CardType2';
 import axios from 'axios'
+import { Typography, Button, Stack, Box, Container } from '@mui/material';
+import { lightBlue } from '@mui/material/colors';
+
+const lblue = lightBlue[600];
 
 function CardController() {
-    const [movie, setMovie] = useState([]);
+    const [trending, setTrending] = useState([]);
+    const [nowPlaying, setNowPlaying] = useState([]);
+    // const [netflix, setNetflix] = useState([]);
+    // const [prime, setPrime] = useState([]);
+
+    function changeNetflix(){
+      axios.get('/netflix').then(result => {
+        setTrending(result.data.results)
+        console.log(result.data.results);
+      })}
+
+    function changePrime(){
+      axios.get('/prime').then(result => {
+        setTrending(result.data.results)
+    })}
+
+    function changeTrending(){
+      axios.get('/trending').then(result => {
+        setTrending(result.data.results)
+    })}
+
     useEffect(() => {
-      axios.get('/trending').then(result => { console.log(result.data.trending.results);
-        setMovie(result.data.trending.results);
+      axios.get('/home').then(result => { 
+        console.log('t');
+        setTrending(result.data.trending.results);
+        // console.log(result.data.trending.results);
+        setNowPlaying(result.data.nowPlaying.results);
         return; })
     // console.log(req.data);
     }, []);
+
   return (
-    <Grid container sx={{ml : 3, justifyContent: 'center', mb:7, mt : 7}} >
-      {movie.map((move, index) => (
-        <div key={index}>
-          <CardType2 xs={10} md={4} lg={3}movie={move} index={index}/>
-        </div>
-      ))}
-    </Grid>  
+    <>
+      <Typography sx={{ml : 4}} variant='h3' color={lblue}> Now Playing movies</Typography>
+      <Grid container sx={{justifyContent: 'center', mb:7, mt : 3}} >
+        {nowPlaying.map((now, index) => (
+          <div key={'20'+index}>
+            <CardType2 xs={10} md={4} lg={2} movie={now} index={index}/>
+          </div>
+        ))}
+      </Grid>
+
+    <Container sx={{display: 'flex', alignItems: 'center'}} spacing={2} direction="row">
+      <Button sx={{ml: 2, mr: 1}} key='one'variant="outlined" onClick={() => {changeTrending()}}>Trending</Button>
+      <Button sx={{ml: 1, mr: 1}} key='two' variant="outlined" onClick={() => {changeNetflix()}}>Netflix</Button>
+      <Button sx={{ml: 1, mr: 1}} key='three' variant="outlined" onClick={() => {changePrime()}}>Prime Video</Button>
+    </Container>
+      
+
+      <Typography sx={{ml : 4}} variant='h3' color={lblue}> Trending movies</Typography>
+      <Grid container sx={{ justifyContent: 'center', mb:7, mt : 3}} >
+        {trending.map((trend, index) => (
+          <div key={'10'+index}>
+            <CardType2 sx={{ boxShadow: 5}} xs={10} md={4} lg={3} movie={trend} index={index}/>
+          </div>
+        ))}
+      </Grid>  
+    </>
   )
 }
 

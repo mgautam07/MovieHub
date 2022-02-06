@@ -16,7 +16,7 @@ function card(props) {
     <div className={classes}>
         <div className="info_section">
           <div className="movie_header">
-            <img className="locandina" src={linkk}/>
+            <img className="locandina" src={linkk} alt="thumbnail"/>
             <h1>{props.movie.original_title}</h1>
             <h4>{props.movie.release_date}</h4>
             <span className="minutes">{props.movie.vote_average}</span>

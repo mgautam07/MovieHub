@@ -3,13 +3,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Grid , Box} from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 
 function CardType2(props) {
   const linkk = "https://image.tmdb.org/t/p/w500/" + props.movie.backdrop_path;
   return(
     <>
-      <Card sx={{ width: 375, m: 1, height: 300, boxShadow: 1 }}>
+      <Card sx={{ width: 340, m: 1, height: 305, boxShadow: 5 }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -19,15 +20,21 @@ function CardType2(props) {
           sx={{ height: 200 }}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5">
-            {props.movie.original_title}
-          </Typography>
+        <Box component="div" sx={{ textOverflow: 'ellipsis', fontSize: 20, mb : 1.3 }}>
+            {/* <Typography gutterBottom variant="h5" sx={{ textOverflow: 'ellipsis' }}> */}
+            {props.movie.original_title || props.movie.original_name}
+          </Box>
           <Typography variant="body2" color="text.secondary">
-            {props.movie.release_date}
+            {props.movie.release_date || props.movie.first_air_date}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Grid container columnSpacing={1} direction='row' alignItems='center'>
+            <Grid item>
             {props.movie.vote_average}
-          </Typography>
+            </Grid>
+            <Grid item>
+             <StarIcon color='warning'/>
+            </Grid>
+          </Grid>
         </CardContent>
       </CardActionArea>
     </Card>

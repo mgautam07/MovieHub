@@ -1,5 +1,5 @@
 import './App.css';
-import http from "./http-common";
+// import http from "./http-common";
 import Home from './components/Home/Home.js'
 import Footer from './components/Footer.js';
 import NavBar from './components/Navbar.js';
@@ -7,7 +7,8 @@ import Recom from './components/Recom.js';
 import Upcoming from './components/Upcoming.js';
 import Signin from './components/Signin.js';
 
-import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+// import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route exact path='/signin' element={<Signin />} />
       </Routes>
     </BrowserRouter>
-    <Footer/>
+    {/* <Footer/> */}
     </>
   );
 }
