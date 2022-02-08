@@ -10,23 +10,26 @@ const lblue = lightBlue[600];
 function CardController() {
     const [trending, setTrending] = useState([]);
     const [nowPlaying, setNowPlaying] = useState([]);
+    const [status, setStatus] = useState('Trending Movies');
     // const [netflix, setNetflix] = useState([]);
     // const [prime, setPrime] = useState([]);
 
     function changeNetflix(){
       axios.get('/netflix').then(result => {
-        setTrending(result.data.results)
-        console.log(result.data.results);
+        setTrending(result.data.results);
+        setStatus('Trending movies on Netflix');
       })}
 
     function changePrime(){
       axios.get('/prime').then(result => {
-        setTrending(result.data.results)
+        setTrending(result.data.results);
+        setStatus('Trending movies on Amazon Prime Video');
     })}
 
     function changeTrending(){
       axios.get('/trending').then(result => {
-        setTrending(result.data.results)
+        setTrending(result.data.results);
+        setStatus('Trending Movies');
     })}
 
     useEffect(() => {
@@ -57,7 +60,7 @@ function CardController() {
     </Container>
       
 
-      <Typography sx={{ml : 4}} variant='h3' color={lblue}> Trending movies</Typography>
+      <Typography sx={{ml : 4}} variant='h3' color={lblue}> {status}</Typography>
       <Grid container sx={{ justifyContent: 'center', mb:7, mt : 3}} >
         {trending.map((trend, index) => (
           <div key={'10'+index}>

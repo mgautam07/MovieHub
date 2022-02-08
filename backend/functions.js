@@ -44,21 +44,27 @@ export async function getPrime() {
     return response.json();
 }
 
-export async function recommendation(movies){
-    console.log(movies.movie1);
-    var movie1;
+
+    // .then(objects => {
+        // let recom1res = fetch('https://api.themoviedb.org/3/movie/' + objects[0].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()})
+        // let recom2res = fetch('https://api.themoviedb.org/3/movie/' + objects[1].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()})
+        // let recom3res = fetch('https://api.themoviedb.org/3/movie/' + objects[2].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()})
+        // let recom4res = fetch('https://api.themoviedb.org/3/movie/' + objects[3].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()})
+        // let recom5res = fetch('https://api.themoviedb.org/3/movie/' + objects[4].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()})
+    // })
     // let movie = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query=' +'VENOM%202'+ '&page=1&include_adult=true')
     // .then(respose => {
     // return respose.json();}).catch(err => {console.log(err)});
     // var m1 = movie.then(
         // movie1 = fetch('https://api.themoviedb.org/3/movie/' + movie + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1', {
-        fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query=' + movies.movie1 +'&page=1&include_adult=true')
-        .then(respose => { return respose.json()})
-        .then(data => fetch('https://api.themoviedb.org/3/movie/' + data.results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1'))
-        .then(m1 => m1.json())
-        .then(dat => { movie1 = dat;
-            console.log('movie1 - ', movie1)})
-        .catch(err => {console.log(err)});    
+        // const recom1a = await fetch('https://api.themoviedb.org/3/movie/' + recom1a.results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1')
+        // const recom1 = await fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query=' + movies.movie1 +'&page=1&include_adult=true')
+        // .then(respose => { return respose.json()})
+        // .then(data => fetch('https://api.themoviedb.org/3/movie/' + data.results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1'))
+        // .then(m1 => m1.json())
+        // .then(dat => { movie1 = dat;
+        //     console.log('movie1 - ', movie1)})
+        // .catch(err => {console.log(err)});    
     // )
     // .then(movie1 = await fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query=' + movies.movie1.replace(/\s/g, '%20') + '&page=1&include_adult=true'))
     // console.log(movie);
@@ -81,8 +87,7 @@ export async function recommendation(movies){
     // movie4 = movie4.json().results
     // movie5 = movie5.json().results
     // return({movie1, movie2, movie3, movie4, movie5});
-    return({movie});
-}
+
 
 // export async function getNetflixOriginalsTV() {
 //     const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + process.env.MDB_API + '&with_networks=213');
