@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Grid from '@mui/material/Grid';
 import CardType2 from './CardType2';
 import axios from 'axios'
-import { Typography, Button, Stack, Box, Container } from '@mui/material';
+import { Typography, Button, Container } from '@mui/material';
 import { lightBlue } from '@mui/material/colors';
 
 const lblue = lightBlue[600];

@@ -1,22 +1,31 @@
 import axios from 'axios';
 import {React, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Stack, Alert, Collapse } from '@mui/material'
 import '../../components/all.css';
 
-function Form() {
-  const navigate = useNavigate();
+function Form({setMovies}) {
   const [movie1, setMovie1] = useState("");
   const [movie2, setMovie2] = useState("");
   const [movie3, setMovie3] = useState("");
   const [movie4, setMovie4] = useState("");
   const [movie5, setMovie5] = useState("");
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('handled')
-    let recommendations = axios.post('/MovieRecommender', {movie1: movie1, movie2: movie2, movie3: movie3, movie4: movie4, movie5: movie5,})
-    .then((data) => {console.log(data);
-    return data;})
+    if (movie1 !== '' && movie2 !== '' && movie3 !== '' && movie4 !== '' && movie5 !== '') {
+      console.log('Sending Request for recommendations');
+      axios.post('/MovieRecommender', {movie1: movie1, movie2: movie2, movie3: movie3, movie4: movie4, movie5: movie5,})
+      .then((dat) => {
+        setMovies(dat.data);
+        return dat;})
+        setOpen(false);
+    }
+    else
+    {
+      setOpen(true);
+    }
     // navigate('/MovieRecommender');
   }
 
@@ -38,9 +47,16 @@ function Form() {
         <input className="form-field" type="text" name="movie5" id="movie5" onChange={(event) => {setMovie5((event.target.value))}} required autoComplete='off'/>
       </div>
       <input className="btn" type="submit" onClick={handleSubmit}/>
-      <input className="btn" type="reset" />
+      <input className="btn" type="reset" onClick={() => {setOpen(false)}}/>
     </form>
     </section>
+    <Stack sx={{ width: '100%' }} spacing={2}>
+      <Collapse in={open}>  
+        <Alert variant="filled" severity="error">
+          Make sure to fill all the fields!
+        </Alert>
+      </Collapse>
+    </Stack>
   </>;
 }
 

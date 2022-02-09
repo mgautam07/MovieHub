@@ -10,6 +10,7 @@ function CardType2(props) {
   const linkk = "https://image.tmdb.org/t/p/w500/" + props.movie.backdrop_path;
   return(
     <>
+    {console.log(props.movie)}
       <Card sx={{ width: 340, m: 1, height: 305, boxShadow: 5 }}>
       <CardActionArea>
         <CardMedia

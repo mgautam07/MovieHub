@@ -79,8 +79,14 @@ app.post('/MovieRecommender', async (req, res) => {
       Promise.all([recom1res, recom2res, recom3res, recom4res, recom5res])
       .then(
           (data) => {
-            console.log(data[0].results);
-            res.send(data[0].results, data[1].results, data[2].results, data[3].results, data[4].results);
+            // data[0] = data[0].results.slice(0, 9);
+            // data[1] = data[1].results.slice(0, 9);
+            // data[2] = data[2].results.slice(0, 9);
+            // data[3] = data[3].results.slice(0, 9);
+            // data[4] = data[4].results.slice(0, 9);
+            // console.log(data[0]);
+            res.send(data);
+            // res.send(data[0].results, data[1].results, data[2].results, data[3].results, data[4].results);
           //     var x = data[0].results;
           // m.push(x.slice(0, 5));
           // x = data[1].results;
