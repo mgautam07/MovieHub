@@ -31,6 +31,16 @@ const app = express();
 app.use(express.json());
 // app.use(cors);
 app.use(express.urlencoded({extended: true}));
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
 
 app.get('/home', (req, res) => {
   res.send({nowPlaying, trending})
