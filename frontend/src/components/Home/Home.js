@@ -1,7 +1,6 @@
 import React from 'react';
 import '../all.css';
 import './home.css';
-import Form from './Form.js';
 import nowshowing from'../../photos/nowshowing.jpg'
 import netflix from'../../photos/netflix.jpg'
 import CardType2 from '../cards/CardController';
@@ -29,7 +28,7 @@ export default function Home() {
 
   <CardType2 />
 
-  <Form />
+
     {/* <section>
       Trending
       <div className='cardHolder'>

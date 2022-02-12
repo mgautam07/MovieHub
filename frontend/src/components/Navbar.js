@@ -43,7 +43,7 @@ export default function Navbar() {
           <Link className="nav-link" to="/upcoming">Upcoming</Link>
         </li>
         <li className="nav-list">
-          <Link className="nav-link" to="/movierecommender">Movie Recommender</Link>
+          <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
         </li>
         <li className="nav-list">
           <Link className="nav-link" to="/signin">Signin</Link>

@@ -5,18 +5,26 @@
     "express": "^4.17.1",
     "googleapis": "^89.0.0",
     "mongoose": "^6.0.12",
-    "node-fetch": "^3.0.0",
-    "nodemon": "^2.0.14"
+    "node-fetch": "^3.2.0",
+    "nodemon": "^2.0.14",
+    "passport-local": "^1.0.0"
   },
+  "optionalDependencies": {
+    "fsevents": "2.3.2"},
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "private": true,
   "type": "module",
   "scripts": {
     "start": "nodemon index.js --ignore client"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/username/repository.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Backend for movie hub"
 }

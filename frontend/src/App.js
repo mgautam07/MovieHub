@@ -3,7 +3,7 @@ import './App.css';
 import Home from './components/Home/Home.js'
 import Footer from './components/Footer.js';
 import NavBar from './components/Navbar.js';
-import Recom from './components/Recom.js';
+import MovieRecommender from './components/MovieRecommender';
 import Upcoming from './components/Upcoming.js';
 import Signin from './components/Signin.js';
 
@@ -20,7 +20,7 @@ function App() {
         {/* <Route exact path='/latest' element={<Navigate replace to='/latest/netflix' />} /> */}
         <Route exact path='/about' element={<Home />} />
         <Route exact path='/upcoming' element={<Upcoming />} />
-        <Route exact path='/movierecommender' element={<Recom />} />
+        <Route exact path='/MovieRecommender' element={<MovieRecommender />} />
         <Route exact path='/signin' element={<Signin />} />
       </Routes>
     </BrowserRouter>
