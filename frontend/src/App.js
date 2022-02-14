@@ -5,9 +5,10 @@ import Footer from './components/Footer.js';
 import NavBar from './components/Navbar.js';
 import MovieRecommender from './components/MovieRecommender';
 import Upcoming from './components/Upcoming.js';
-import Signin from './components/Signin.js';
+import Login from './components/Login.js';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Signup from './components/Signup';
 // import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
         <Route exact path='/about' element={<Home />} />
         <Route exact path='/upcoming' element={<Upcoming />} />
         <Route exact path='/MovieRecommender' element={<MovieRecommender />} />
-        <Route exact path='/signin' element={<Signin />} />
+        <Route exact path='/login' element={<Login />} />
+        <Route exact path='/signup' element={<Signup />} />
       </Routes>
     </BrowserRouter>
     {/* <Footer/> */}

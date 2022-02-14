@@ -34,7 +34,6 @@ function CardController() {
 
     useEffect(() => {
       axios.get('/home').then(result => { 
-        console.log('t');
         setTrending(result.data.trending.results);
         // console.log(result.data.trending.results);
         setNowPlaying(result.data.nowPlaying.results);

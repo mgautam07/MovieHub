@@ -46,7 +46,10 @@ export default function Navbar() {
           <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
         </li>
         <li className="nav-list">
-          <Link className="nav-link" to="/signin">Signin</Link>
+          <Link className="nav-link" to="/login">Login</Link>
+        </li>
+        <li className="nav-list">
+          <Link className="nav-link" to="/signup">Sign Up</Link>
         </li>
       </ul>
     </div>
