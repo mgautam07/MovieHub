@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useContext} from 'react'
 import { Grid,Paper, Avatar, TextField, Button, Typography } from '@mui/material'
 import { Stack, Alert, Collapse } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -7,6 +7,8 @@ import Checkbox from '@mui/material/Checkbox';
 import {Link, useNavigate} from 'react-router-dom'
 import { lightBlue } from '@mui/material/colors';
 import axios from 'axios'
+import { LoginContext } from '../contexts/LoginContexts'
+import Context from '@mui/base/TabsUnstyled/TabsContext';
 
 const lblue = lightBlue[600];
 const Login=()=>{
@@ -16,7 +18,7 @@ const Login=()=>{
     const btnstyle={margin:'15px 0', height:'45px'}
 
     const navigate = useNavigate()
-    const [username, setUsername] = useState();
+    const {username, setUsername} = useContext(LoginContext)
     const [password, setPassword] = useState();
     const [open, setOpen] = useState(false);
     const [alertMsg, setAlertMsg] = useState('Make sure to fill all the fields!');
