@@ -34,7 +34,6 @@ export default function Navbar() {
     <div className='navb'>
       <div className="logo">
         <Link to="/" className="logo-img">
-          {/* <!-- <img src="icon.png" alt=""> --> */}
           <span className="material-icons">
             live_tv
             </span>
@@ -52,7 +51,7 @@ export default function Navbar() {
           <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
         </li>
         {username ? 
-        <li className="nav-list">
+        <li className="nav-list left">
         <Link className="nav-link" to="/MovieRecommender">{username}</Link>
       </li>
         :<> <li className="nav-list">
