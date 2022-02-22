@@ -25,13 +25,11 @@ const Login=()=>{
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        console.log('handled');
         if(username && password)
         {
             setOpen(false)
             axios.post('/login', {username: username, password: password})
             .then((res) => {
-                console.log(res.data)
                 if (res.data.exists && res.data.login) {
                     setOpen(false)
                     navigate('/')

@@ -47,10 +47,18 @@ a {
   background-color: hsl(0, 65%, 48%);
   /* color: #cfb3cd; */
   color: #0a014f;
-  /* height: 60px; */
-  /* border-bottom: 5px soled black; */
+  /* position: -webkit-sticky;
+  position: sticky;
+  top: 0; */
+}
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #0a014f;
 }
 .nav-list {
+  cursor: pointer;
   overflow: hidden;
   display: inline;
   margin: 0.5em;
@@ -63,7 +71,6 @@ a {
   /* background-color: #f75931; */
   color: #0a014f;
   background-color: #caa8f5;
-  /* transform: scale(2); */
 }
 .nav-link {
   display: inline-block;
@@ -89,7 +96,7 @@ a {
 .container {
   display: flex;
   flex-wrap: wrap;
-  height: 70vh;
+  height: 83vh;
   background-color: #cc2b2b;
   overflow: none;
 }

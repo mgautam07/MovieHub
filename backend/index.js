@@ -65,6 +65,16 @@ app.get('/netflix', (req, res) => {
   res.send(netflixTV)
 })
 
+app.get('/search/movie/:id', async (req, res) => {
+  const movie = await (await fetch('https://api.themoviedb.org/3/movie/' +req.params.id+ '?api_key=' + process.env.MDB_API + '&language=en-US')).json()
+  res.send(movie);
+})
+
+app.get('/search/tv/:id', async (req, res) => {
+  const show = await (await fetch('https://api.themoviedb.org/3/tv/' +req.params.id+ '?api_key=' + process.env.MDB_API + '&language=en-US')).json()
+  res.send(show);
+})
+
 app.post('/register', async (req, res) =>{
   console.log(req.body.password);
   const user1 = await Users.findOne({
@@ -141,8 +151,7 @@ app.post('/MovieRecommender', async (req, res) => {
       let recom5res = fetch('https://api.themoviedb.org/3/movie/' + files[4].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)});
 
       Promise.all([recom1res, recom2res, recom3res, recom4res, recom5res])
-      .then(
-          (data) => {
+      .then((data) => {
             res.send(data);
       })
       .catch(err => {console.log(err)}); 

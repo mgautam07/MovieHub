@@ -12,8 +12,10 @@ import { LoginContext } from '../contexts/LoginContexts';
 
 export default function Navbar() {
 
-  const {username} = useContext(LoginContext)
-
+  const {username, setUsername} = useContext(LoginContext)
+  const handleLogout = () =>{
+    setUsername((""))
+  }
 
   return (
 
@@ -50,16 +52,24 @@ export default function Navbar() {
         <li className="nav-list">
           <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
         </li>
-        {username ? 
-        <li className="nav-list left">
-        <Link className="nav-link" to="/MovieRecommender">{username}</Link>
-      </li>
-        :<> <li className="nav-list">
-          <Link className="nav-link" to="/login">Login</Link>
-        </li>
-        <li className="nav-list">
-          <Link className="nav-link" to="/signup">Sign Up</Link>
-        </li></>}
+        {username ?
+        <>
+          <li className="nav-list left">
+            <Link className="nav-link" to="/MovieRecommender">{username}</Link>
+          </li>
+          <li className="nav-list left">
+            <button onClick={handleLogout}>Logout</button>
+          </li>
+        </>
+        :
+        <>
+          <li className="nav-list">
+            <Link className="nav-link" to="/login">Login</Link>
+          </li>
+          <li className="nav-list">
+            <Link className="nav-link" to="/signup">Sign Up</Link>
+          </li>
+        </>}
         
       </ul>
     </div>

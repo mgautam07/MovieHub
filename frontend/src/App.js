@@ -11,6 +11,7 @@ import { LoginContext } from './contexts/LoginContexts';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Signup from './components/Signup';
+import Search from './components/Search';
 // import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route exact path='/MovieRecommender' element={<MovieRecommender />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
+          <Route exact path='/search' element={<Search />} />
         </Routes>
       </BrowserRouter>
     {/* <Footer/> */}
