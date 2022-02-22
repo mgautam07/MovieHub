@@ -12,18 +12,20 @@ body {
 .movie_card {
   position: relative;
   display: block;
-  width: 800px;
-  height: 350px;
-  margin: 100px 200px;
+  width: 95%;
+  height: 80%;
+  min-height: 500px;
+  margin: auto;
+  margin-top: 10px;
   overflow: hidden;
   border-radius: 10px;
   transition: all 0.4s;
   box-sizing: border-box;
 }
-.movie_card:hover {
+/* .movie_card:hover {
   transform: scale(1.02);
   transition: all 0.4s;
-}
+} */
 .info_section {
   position: relative;
   width: 100%;
@@ -144,8 +146,9 @@ body {
 @media screen and (max-width: 768px) {
   .movie_card {
     width: 95%;
-    margin: 70px auto;
-    min-height: 350px;
+    margin: auto;
+    margin-top: 35px;
+    min-height: 500px;
     height: auto;
   }
 
@@ -172,5 +175,6 @@ body {
 @media screen and (max-width: 1281px) {
   .movie_card {
     margin: 70px auto;
+    min-height: 500px;
   }
 }

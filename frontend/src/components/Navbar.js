@@ -1,6 +1,8 @@
-import * as React from 'react';
+import  { React, useContext } from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import './all.css';
+import { LoginContext } from '../contexts/LoginContexts';
+
 // import AppBar from '@mui/material/AppBar';
 // import Box from '@mui/material/Box';
 // import Toolbar from '@mui/material/Toolbar';
@@ -9,6 +11,12 @@ import './all.css';
 // import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Navbar() {
+
+  const {username, setUsername} = useContext(LoginContext)
+  const handleLogout = () =>{
+    setUsername((""))
+  }
+
   return (
 
     // <Box sx={{ flexGrow: 1 }}>
@@ -28,7 +36,6 @@ export default function Navbar() {
     <div className='navb'>
       <div className="logo">
         <Link to="/" className="logo-img">
-          {/* <!-- <img src="icon.png" alt=""> --> */}
           <span className="material-icons">
             live_tv
             </span>
@@ -45,9 +52,25 @@ export default function Navbar() {
         <li className="nav-list">
           <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
         </li>
-        <li className="nav-list">
-          <Link className="nav-link" to="/signin">Signin</Link>
-        </li>
+        {username ?
+        <>
+          <li className="nav-list left">
+            <Link className="nav-link" to="/MovieRecommender">{username}</Link>
+          </li>
+          <li className="nav-list left">
+            <button onClick={handleLogout}>Logout</button>
+          </li>
+        </>
+        :
+        <>
+          <li className="nav-list">
+            <Link className="nav-link" to="/login">Login</Link>
+          </li>
+          <li className="nav-list">
+            <Link className="nav-link" to="/signup">Sign Up</Link>
+          </li>
+        </>}
+        
       </ul>
     </div>
   );

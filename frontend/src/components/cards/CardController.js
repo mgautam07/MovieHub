@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import Grid from '@mui/material/Grid';
-import CardType2 from './CardType2';
+import React, {useEffect, useState} from 'react'
+import Grid from '@mui/material/Grid'
+import CardType2 from './CardType2'
 import axios from 'axios'
-import { Typography, Button, Container } from '@mui/material';
-import { lightBlue } from '@mui/material/colors';
+import { Typography, Button, Container } from '@mui/material'
+import { lightBlue } from '@mui/material/colors'
 
-const lblue = lightBlue[600];
+const lblue = lightBlue[600]
 
 function CardController() {
     const [trending, setTrending] = useState([]);
@@ -34,7 +34,6 @@ function CardController() {
 
     useEffect(() => {
       axios.get('/home').then(result => { 
-        console.log('t');
         setTrending(result.data.trending.results);
         // console.log(result.data.trending.results);
         setNowPlaying(result.data.nowPlaying.results);
