@@ -7,8 +7,10 @@ import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import {useNavigate} from 'react-router-dom';
 import StarIcon from '@mui/icons-material/Star';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import dayjs from 'dayjs'
 
 
@@ -35,10 +37,18 @@ function CardType2(props) {
           sx={{ height: 200 }}
         />
         <CardContent>
-        <Box component="div" sx={{ textOverflow: 'ellipsis', fontSize: 20, mb : 1.3 }}>
-            {/* <Typography gutterBottom variant="h5" sx={{ textOverflow: 'ellipsis' }}> */}
-            {props.movie.original_title || props.movie.original_name}
-          </Box>
+        <Grid container columnSpacing={1} direction='row' alignItems='center'>
+          <Grid item>
+            <Box component="div" sx={{ textOverflow: 'ellipsis', fontSize: 20 }}>
+              {props.movie.original_title || props.movie.original_name}
+              <IconButton color="warning" aria-label="Favorite" component="span">
+                <FavoriteBorderIcon />
+              </IconButton>
+            </Box>
+          </Grid>
+          <Grid item>
+          </Grid>
+        </Grid>
           <Typography variant="body2" color="text.secondary">
             {date}
           </Typography>

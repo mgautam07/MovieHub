@@ -116,18 +116,18 @@ app.post('/login', async (req, res) => {
   const user = await Users.findOne({
     username: req.body.username
   })
-  console.log(req.body.password, user.password)
   if (user)
   {
+    // console.log(req.body.password, user.password)
     console.log(await bcrypt.compare( req.body.password, user.password))
     if (await bcrypt.compare( req.body.password, user.password)){
-      res.json({exists: true, login: true})
+      res.json({exists: true, login: true, favorites: user.favorites})
     }
     else
       res.json({exists: true, login: false})    
   }
   else
-    res.json({ exists: false, login: false })
+    res.json({ exists: false, login: false})
   
   res.send()
 })
