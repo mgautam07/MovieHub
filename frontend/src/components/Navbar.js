@@ -1,6 +1,6 @@
 import  { React, useContext } from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import './all.css';
+import './nav.css';
 import { LoginContext } from '../contexts/LoginContexts';
 
 // import AppBar from '@mui/material/AppBar';
@@ -33,44 +33,47 @@ export default function Navbar() {
     //     </Toolbar>
     //   </AppBar>
     // </Box>
-    <div className='navb'>
+    <div className='navbar'>
       <div className="logo">
         <Link to="/" className="logo-img">
           <span className="material-icons">
             live_tv
-            </span>
+            </span>Movie Hub
         </Link>
       </div>
-      <Link to="/" className="movie-hub">Movie Hub</Link>
-      <ul className="">
-        <li className="nav-list">
+      {/* <Link to="/" className="movie-hub"></Link> */}
+      <ul className="nav-links">
+      <input type="checkbox" id="checkbox_toggle" />
+      <label for="checkbox_toggle" className="hamburger">&#9776;</label>
+      <div className='menu'>
+        <li>
           <NavLink className="nav-link" to="/">Latest</NavLink>
         </li>
-        <li className="nav-list">
+        <li>
           <Link className="nav-link" to="/upcoming">Upcoming</Link>
         </li>
-        <li className="nav-list">
+        <li>
           <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
         </li>
         {username ?
         <>
-          <li className="nav-list left">
+          <li className=" left">
             <Link className="nav-link" to="/MovieRecommender">{username}</Link>
           </li>
-          <li className="nav-list left">
+          <li className=" left">
             <button onClick={handleLogout}>Logout</button>
           </li>
         </>
         :
         <>
-          <li className="nav-list">
+          <li>
             <Link className="nav-link" to="/login">Login</Link>
           </li>
-          <li className="nav-list">
+          <li>
             <Link className="nav-link" to="/signup">Sign Up</Link>
           </li>
         </>}
-        
+      </div>
       </ul>
     </div>
   );
