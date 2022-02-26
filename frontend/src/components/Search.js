@@ -13,10 +13,10 @@ function Search() {
 
     useEffect(() => {
             if (location.state.id){
-            axios.get(`/search/tv/${location.state.id}`).then(result => {
+            axios.get(`https://movie-hub1.herokuapp.com/search/tv/${location.state.id}`).then(result => {
                 setMovie(result.data)
                 if (result.data.status_code === 34){
-                axios.get(`/search/movie/${location.state.id}`).then(result => {
+                axios.get(`https://movie-hub1.herokuapp.com/search/movie/${location.state.id}`).then(result => {
                     setMovie(result.data)
             })}
             })}

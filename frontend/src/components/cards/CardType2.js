@@ -35,17 +35,14 @@ function CardType2(props) {
     {
       setFavorites(favorites => [...favorites, props.movie.id])
       setFav(true)
-      console.log("inserting")
     }
     else 
     {
       let filteredarray = favorites.filter(item => item !== props.movie.id)
       setFavorites(filteredarray)
       setFav(false)
-      console.log("removing")
     }
-    console.log("nothing")
-    axios.post('/favorites/update', {"username": username, "favorites": favorites})
+    axios.post('https://movie-hub1.herokuapp.com/favorites/update', {"username": username, "favorites": favorites})
     .then((result) => {
       console.log(result)
       return result

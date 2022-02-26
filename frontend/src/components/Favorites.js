@@ -15,7 +15,7 @@ function Favorites() {
 
  
   useEffect(() => {
-    axios.post('/favorites/show', {favorites: favorites})
+    axios.post('https://movie-hub1.herokuapp.com/favorites/show', {favorites: favorites})
     .then((result) => {
         console.log(result)
         setMovies(result.data)
