@@ -24,8 +24,7 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const handleSubmit = (event) =>{
-        event.preventDefault();
-        console.log('handled');
+        event.preventDefault()
         if(username && password)
         {
             setOpen(false)

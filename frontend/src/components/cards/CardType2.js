@@ -44,7 +44,6 @@ function CardType2(props) {
     }
     axios.post('https://movie-hub1.herokuapp.com/favorites/update', {"username": username, "favorites": favorites})
     .then((result) => {
-      console.log(result)
       return result
     })
     .catch(error => {

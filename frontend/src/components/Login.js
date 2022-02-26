@@ -36,7 +36,6 @@ const Login=()=>{
                     setOpen(false)
                     setUsername(usernameLocal)
                     setFavorites(res.data.favorites)
-                    console.log(res.data.favorites)
                     navigate('/')
                 }
                 else if (res.data.exists && !res.data.login) {
