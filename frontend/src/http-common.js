@@ -1,8 +1,11 @@
-import axios from "axios";
+import axios from "axios"
+import dotenv from "dotenv"
 
+dotenv.config()
 export default axios.create({
-    baseURL : "https://movie-hub1.herokuapp.com/" || "http://localhost:3000",
+    baseURL : process.env.backend || "http://localhost:3000",
     headers : {
-        "Content-type" : "application/json"
+        "Content-type" : "application/json",
+        "crossDomain" : true
     }
 });
