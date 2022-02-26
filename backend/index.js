@@ -81,6 +81,16 @@ app.get('/homesearch/:query', async(req, res) => {
   res.send({movies, shows})
 })
 
+app.post('/f', async(req, res) => {{
+  Users.updateOne({username: req.body.username}, {$set: {favorites: req.body.favorites}}, function(err, res) {
+    if (err) throw err
+    console.log("1 document updated")
+  })
+  res.status(200)
+  console.log("done")
+  res.send()
+}})
+
 app.post('/register', async (req, res) =>{
   console.log(req.body.password);
   const user1 = await Users.findOne({

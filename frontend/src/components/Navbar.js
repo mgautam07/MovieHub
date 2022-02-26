@@ -13,8 +13,10 @@ import { LoginContext } from '../contexts/LoginContexts';
 export default function Navbar() {
 
   const {username, setUsername} = useContext(LoginContext)
+  const {favorites, setFavorites} = useContext(LoginContext)
   const handleLogout = () =>{
     setUsername((""))
+    setFavorites([])
   }
 
   return (

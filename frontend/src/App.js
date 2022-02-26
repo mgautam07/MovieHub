@@ -17,7 +17,7 @@ import Query from './components/Home/Query';
 
 function App() {
 
-  const [username, setUsername] = useState()
+  const [username, setUsername] = useState('')
   const [favorites, setFavorites] = useState([])
 
   return (
