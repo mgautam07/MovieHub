@@ -1,76 +1,62 @@
 import  { React, useContext } from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import './all.css';
+import './nav.css';
 import { LoginContext } from '../contexts/LoginContexts';
-
-// import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
-// import Button from '@mui/material/Button';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Navbar() {
 
   const {username, setUsername} = useContext(LoginContext)
+  const {favorites, setFavorites} = useContext(LoginContext)
   const handleLogout = () =>{
     setUsername((""))
+    setFavorites([])
   }
 
   return (
-
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <AppBar position="static">
-    //     <Toolbar variant="dense">
-    //       {/* <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-    //         <MenuIcon />
-    //       </IconButton> */}
-    //       <Button variant="text" 
-    //       color="error"
-    //       >Trending</Button>         
-    //       <Button variant="outlined">Latest</Button>         
-    //       <Button variant="outlined">Company</Button>         
-    //     </Toolbar>
-    //   </AppBar>
-    // </Box>
-    <div className='navb'>
+    <div className='navbar'>
       <div className="logo">
         <Link to="/" className="logo-img">
           <span className="material-icons">
             live_tv
-            </span>
+            </span>Movie Hub
         </Link>
       </div>
-      <Link to="/" className="movie-hub">Movie Hub</Link>
-      <ul className="">
-        <li className="nav-list">
-          <NavLink className="nav-link" to="/">Latest</NavLink>
+      {/* <Link to="/" className="movie-hub"></Link> */}
+      <ul className="nav-links">
+      <input type="checkbox" id="checkbox_toggle" />
+      <label htmlFor="checkbox_toggle" className="hamburger">&#9776;</label>
+      <div className='menu'>
+        <li>
+          <NavLink to="/">Latest</NavLink>
         </li>
-        <li className="nav-list">
-          <Link className="nav-link" to="/upcoming">Upcoming</Link>
+        <li>
+          <Link to="/upcoming">Upcoming</Link>
         </li>
-        <li className="nav-list">
-          <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
+        <li>
+          <Link to="/MovieRecommender">Movie Recommender</Link>
+        </li>
+        <li>
+          <Link to="/query">Search</Link>
         </li>
         {username ?
         <>
-          <li className="nav-list left">
-            <Link className="nav-link" to="/MovieRecommender">{username}</Link>
+          <li>
+            <Link to="/favorites">{username}</Link>
           </li>
-          <li className="nav-list left">
+          <li>
             <button onClick={handleLogout}>Logout</button>
           </li>
         </>
         :
         <>
-          <li className="nav-list">
-            <Link className="nav-link" to="/login">Login</Link>
+          <li>
+            <Link to="/login">Login</Link>
           </li>
-          <li className="nav-list">
-            <Link className="nav-link" to="/signup">Sign Up</Link>
+          <li>
+            <Link to="/signup">Sign Up</Link>
           </li>
         </>}
-        
+      </div>
       </ul>
     </div>
   );

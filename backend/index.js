@@ -34,17 +34,6 @@ app.use(express.json());
 // app.use(cors);
 app.use(express.urlencoded({extended: true}));
 
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     User.findOne({ username: username }, function (err, user) {
-//       if (err) { return done(err); }
-//       if (!user) { return done(null, false); }
-//       if (!user.verifyPassword(password)) { return done(null, false); }
-//       return done(null, user);
-//     });
-//   }
-// ));
-
 app.get('/home', (req, res) => {
   res.send({nowPlaying, trending})
 })
@@ -75,6 +64,33 @@ app.get('/search/tv/:id', async (req, res) => {
   res.send(show);
 })
 
+app.get('/homesearch/:query', async(req, res) => {
+  let movies = await fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.params.query +'&page=1&include_adult=true').then(m1 => {return m1.json()})
+  let shows = await fetch('https://api.themoviedb.org/3/search/tv?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.params.query +'&page=1&include_adult=true').then(m1 => {return m1.json()})
+  res.send({movies, shows})
+})
+
+app.post('/favorites/show', async(req, res) => {
+  let movies = []
+  for (let i = 0; i < req.body.favorites.length; i++) {
+    console.log(req.body.favorites[i])
+    let movie = await fetch('https://api.themoviedb.org/3/movie/' + req.body.favorites[i] + '?api_key=' + process.env.MDB_API + '&language=en-US').then(m1 => {return m1.json()})
+    movies.push(movie)
+  }
+  console.log(movies)
+  res.send(movies)
+})
+
+app.post('/favorites/update', async(req, res) => {{
+  Users.updateOne({username: req.body.username}, {$set: {favorites: req.body.favorites}}, function(err, res) {
+    if (err) throw err
+    console.log("1 document updated")
+  })
+  res.status(200)
+  console.log("done")
+  res.send()
+}})
+
 app.post('/register', async (req, res) =>{
   console.log(req.body.password);
   const user1 = await Users.findOne({
@@ -84,7 +100,6 @@ app.post('/register', async (req, res) =>{
   {
     console.log('found', )
     res.json({ found: true })
-    // res.json({ username: '', found: true })
     res.send()
   }
   else{
@@ -116,27 +131,23 @@ app.post('/login', async (req, res) => {
   const user = await Users.findOne({
     username: req.body.username
   })
-  console.log(req.body.password, user.password)
   if (user)
   {
     console.log(await bcrypt.compare( req.body.password, user.password))
     if (await bcrypt.compare( req.body.password, user.password)){
-      res.json({exists: true, login: true})
+      res.json({exists: true, login: true, favorites: user.favorites})
     }
     else
       res.json({exists: true, login: false})    
   }
   else
-    res.json({ exists: false, login: false })
+    res.json({ exists: false, login: false})
   
   res.send()
 })
 
 app.post('/MovieRecommender', async (req, res) => {
-  // const recom = new Recoms(req.body);
   console.log(req.body);
-
-  var m =[];
   const recom1 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie1 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
     const recom2 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie2 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
     const recom3 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie3 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
@@ -162,8 +173,6 @@ app.listen(3000 || process.env.PORT, async () => {
   trending = await getTrending();
   nowPlaying = await getNowPlaying();
   upcoming = await getUpcoming();
-  // netflixMovies = await getNetflixOriginalsMovies()
   prime = await getPrime()
   netflixTV = await getNetflixOriginalsTV();
-  // console.log(data)
 })

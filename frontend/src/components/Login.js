@@ -18,6 +18,8 @@ const Login=()=>{
 
     const navigate = useNavigate()
     const {username, setUsername} = useContext(LoginContext)
+    const {favorites, setFavorites} = useContext(LoginContext)
+    const [usernameLocal, setUsernameLocal] = useState();
     const [password, setPassword] = useState();
     const [open, setOpen] = useState(false);
     const [alertMsg, setAlertMsg] = useState('Make sure to fill all the fields!');
@@ -25,13 +27,16 @@ const Login=()=>{
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        if(username && password)
+        if(usernameLocal && password)
         {
             setOpen(false)
-            axios.post('/login', {username: username, password: password})
+            axios.post('/login', {username: usernameLocal, password: password})
             .then((res) => {
                 if (res.data.exists && res.data.login) {
                     setOpen(false)
+                    setUsername(usernameLocal)
+                    setFavorites(res.data.favorites)
+                    console.log(res.data.favorites)
                     navigate('/')
                 }
                 else if (res.data.exists && !res.data.login) {
@@ -66,7 +71,7 @@ const Login=()=>{
                         <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                         <h2>Log In</h2>
                     </Grid>
-                    <TextField label='Username' placeholder='Enter username' fullWidth onChange={(event) => {setUsername((event.target.value))}} required/>
+                    <TextField label='Username' placeholder='Enter username' fullWidth onChange={(event) => {setUsernameLocal((event.target.value))}} required/>
                     <TextField sx={{mt : 3}} label='Password' placeholder='Enter password' type='password' fullWidth onChange={(event) => {setPassword((event.target.value))}} required/>
                     <FormControlLabel
                         control={

@@ -14,7 +14,6 @@ function card(props) {
   else if(props.index % 3 === 2)
     classes.push('ave');
   classes = classes.join(' ');
-  // console.log(classes)
   return(
     <div className={classes}>
         <div className="info_section">
@@ -31,13 +30,6 @@ function card(props) {
             {props.movie.overview}
             </p>
           </div>
-          {/* <div className="movie_social">
-            <ul>
-            <li><i className="material-icons">share</i></li>
-            <li><i className="material-icons"></i></li>
-            <li><i className="material-icons">chat_bubble</i></li>
-          </ul>
-        </div> */}
       </div>
       <div className="blur_back" style={{ 
       backgroundImage: `url(${linkk})`
