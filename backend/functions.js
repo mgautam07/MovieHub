@@ -29,7 +29,7 @@ export async function getUpcoming() {
 // }
 
 export async function getNetflixOriginalsTV() {
-    const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + process.env.MDB_API + '&language=en-US&with_networks=213');
+    const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=' + process.env.MDB_API + '&language=en-US&with_networks=213');
     return response.json();
 }
 
@@ -39,7 +39,7 @@ export async function getNowPlaying(pageNo = 1){
 }
 
 export async function getPrime() {
-    const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=' + process.env.MDB_API + '&language=en-US&with_networks=1024');
+    const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=' + process.env.MDB_API + '&language=en-US&with_networks=1024');
 // https://api.themoviedb.org/3/discover/tv?api_key= &language=en-US&with_networks=1024
     return response.json();
 }

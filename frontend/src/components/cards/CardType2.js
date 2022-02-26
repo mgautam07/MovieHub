@@ -45,7 +45,7 @@ function CardType2(props) {
       console.log("removing")
     }
     console.log("nothing")
-    axios.post('/f', {"username": username, "favorites": favorites})
+    axios.post('/favorites/update', {"username": username, "favorites": favorites})
     .then((result) => {
       console.log(result)
       return result
@@ -74,7 +74,7 @@ function CardType2(props) {
         open={open}
         autoHideDuration={5}
         message="Login to add favorites!"
-      />
+    />
       <Card sx={{ width: 340, m: 1, height: 305, boxShadow: 5 }}>
       {/* <CardActionArea component={Link} to={"search/" + props.movie.id}> */}
       <CardActionArea onClick={handleSearch}>

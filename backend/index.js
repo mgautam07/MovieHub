@@ -81,7 +81,19 @@ app.get('/homesearch/:query', async(req, res) => {
   res.send({movies, shows})
 })
 
-app.post('/f', async(req, res) => {{
+app.post('/favorites/show', async(req, res) => {
+  let movies = []
+  // req.body.favorites.forEach(async element => {
+  for (let i = 0; i < req.body.favorites.length; i++) {
+    console.log(req.body.favorites[i])
+    let movie = await fetch('https://api.themoviedb.org/3/movie/' + req.body.favorites[i] + '?api_key=' + process.env.MDB_API + '&language=en-US').then(m1 => {return m1.json()})
+    movies.push(movie)
+  }
+  console.log(movies)
+  res.send(movies)
+})
+
+app.post('/favorites/update', async(req, res) => {{
   Users.updateOne({username: req.body.username}, {$set: {favorites: req.body.favorites}}, function(err, res) {
     if (err) throw err
     console.log("1 document updated")

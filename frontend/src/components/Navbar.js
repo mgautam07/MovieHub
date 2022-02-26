@@ -34,33 +34,33 @@ export default function Navbar() {
       <label htmlFor="checkbox_toggle" className="hamburger">&#9776;</label>
       <div className='menu'>
         <li>
-          <NavLink className="nav-link" to="/">Latest</NavLink>
+          <NavLink to="/">Latest</NavLink>
         </li>
         <li>
-          <Link className="nav-link" to="/upcoming">Upcoming</Link>
+          <Link to="/upcoming">Upcoming</Link>
         </li>
         <li>
-          <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
+          <Link to="/MovieRecommender">Movie Recommender</Link>
         </li>
         <li>
-          <Link className="nav-link" to="/query">Search</Link>
+          <Link to="/query">Search</Link>
         </li>
         {username ?
         <>
-          <li className=" left">
-            <Link className="nav-link" to="/MovieRecommender">{username}</Link>
+          <li>
+            <Link to="/favorites">{username}</Link>
           </li>
-          <li className=" left">
+          <li>
             <button onClick={handleLogout}>Logout</button>
           </li>
         </>
         :
         <>
           <li>
-            <Link className="nav-link" to="/login">Login</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link className="nav-link" to="/signup">Sign Up</Link>
+            <Link to="/signup">Sign Up</Link>
           </li>
         </>}
       </div>
