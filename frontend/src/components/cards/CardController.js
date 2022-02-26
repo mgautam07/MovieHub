@@ -11,8 +11,6 @@ function CardController() {
     const [trending, setTrending] = useState([]);
     const [nowPlaying, setNowPlaying] = useState([]);
     const [status, setStatus] = useState('Trending Movies');
-    // const [netflix, setNetflix] = useState([]);
-    // const [prime, setPrime] = useState([]);
 
     function changeNetflix(){
       axios.get('/netflix').then(result => {
@@ -35,15 +33,13 @@ function CardController() {
     useEffect(() => {
       axios.get('/home').then(result => { 
         setTrending(result.data.trending.results);
-        // console.log(result.data.trending.results);
         setNowPlaying(result.data.nowPlaying.results);
         return; })
-    // console.log(req.data);
     }, []);
 
   return (
     <>
-      <Typography sx={{ml : 4}} variant='h3' color={lblue}> Now Playing movies</Typography>
+      <Typography sx={{ml : 4, mt: 7}} variant='h3' color={lblue}> Now Playing movies</Typography>
       <Grid container sx={{justifyContent: 'center', mb:7, mt : 3}} >
         {nowPlaying.map((now, index) => (
           <div key={'20'+index}>

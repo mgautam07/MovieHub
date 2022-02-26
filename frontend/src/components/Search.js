@@ -14,33 +14,20 @@ function Search(props) {
     const [movie, setMovie] = useState()
 
     useEffect(() => {
-        // console.log(location.state.id)
-        // console.log(location.state.type)
-        // if (location.state.type === 'movie') {
             if (location.state.id){
             axios.get(`/search/tv/${location.state.id}`).then(result => {
                 setMovie(result.data)
-                // console.log(result.data)
                 if (result.data.status_code === 34){
                 axios.get(`/search/movie/${location.state.id}`).then(result => {
                     setMovie(result.data)
-                    // console.log(result.data)
             })}
             })}
-        // } else {
-            
-        // }
-        
     }, [])
 
   return (
-      // <Container>
-      // <div>Search{location.state.id}</div>
     <Box sx={{ margin: 4 }}>
-        {/* <Typography sx={{mt: 3}} variant="h4" color="secondary"> Search for a movie/show here</Typography> */}
         <Grid container spacing={2}>
             <Grid item xs={12} s={12} md={9} lg={9}>
-                {/* <TextField fullWidth id="outlined-basic" placeholder="Seacrh" variant="outlined" margin="normal"/> */}
                 {movie ? <Card movie={movie}/> : <></>}
             </Grid>
             <Grid item lg={3} md={3} s={12} xs={12}>
@@ -52,12 +39,3 @@ function Search(props) {
 }
 
 export default Search
-
-{/* <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton> */}

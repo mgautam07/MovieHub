@@ -57,7 +57,6 @@ function CardType2(props) {
 
   const handleSearch = () => {
     navigate('/search', {state: {id:props.movie.id}})
-    // console.log(props.movie.media_type)
   }
 
   useEffect(() => {
@@ -66,17 +65,14 @@ function CardType2(props) {
       setFav(true)
     }
   })
-  // const searchID = props.movie.id
   return(
     <>
-    {/* {console.log(props.movie)} */}
     <Snackbar
         open={open}
         autoHideDuration={5}
         message="Login to add favorites!"
     />
       <Card sx={{ width: 340, m: 1, height: 305, boxShadow: 5 }}>
-      {/* <CardActionArea component={Link} to={"search/" + props.movie.id}> */}
       <CardActionArea onClick={handleSearch}>
         <CardMedia
           component="img"

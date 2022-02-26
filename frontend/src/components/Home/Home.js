@@ -15,7 +15,7 @@ export default function Home() {
         <div className="intro-text">
           WELCOME TO THE <span>MOVIE HUB</span> Your one stop destination for all movies / TV shows information
         </div>
-        <img className="now-showing" src={nowshowing} alt="" />
+        {/* <img className="now-showing" src={nowshowing} alt="" /> */}
       </div>
       <div className="netflix" >
         <img src={netflix} alt="netflix" />

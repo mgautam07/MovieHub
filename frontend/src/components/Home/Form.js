@@ -26,12 +26,10 @@ function Form({setMovies}) {
     {
       setOpen(true);
     }
-    // navigate('/MovieRecommender');
   }
 
   return <>
   <section className="section-3">
-    {/* <form action="/MovieRecommender" method="POST"> */}
     <form>
       <div className="form-heading">Fill the form</div>
       <div className="main-form">

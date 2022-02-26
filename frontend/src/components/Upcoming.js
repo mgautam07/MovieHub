@@ -12,21 +12,11 @@ function Upcoming() {
   const [movie, setMovie] = useState([]);
   useEffect(() => {
     axios.get('/upcoming').then(result => { 
-      // console.log(result.data.results);
       setMovie(result.data.results);
       return result.data.results; })
-    // console.log(req.data);
   }, []);
 
   return(
-      // <div className='cards'>
-      //   {movie.map((move, index) => (
-      //     <div key={index}>
-      //       <Card movie={move} index={index}/>
-      //     </div>
-      //   ))}
-      // </div>
-
       <>
         <Typography sx={{ml : 4, mt: 6}} variant='h3' color={lblue}>Upcoming Movies</Typography>
         <Grid container sx={{ justifyContent: 'center', mb:7, mt : 3}} >
