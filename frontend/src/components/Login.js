@@ -30,13 +30,12 @@ const Login=()=>{
         if(usernameLocal && password)
         {
             setOpen(false)
-            axios.post('/login', {username: usernameLocal, password: password})
+            axios.post('https://movie-hub1.herokuapp.com/login', {username: usernameLocal, password: password})
             .then((res) => {
                 if (res.data.exists && res.data.login) {
                     setOpen(false)
                     setUsername(usernameLocal)
                     setFavorites(res.data.favorites)
-                    console.log(res.data.favorites)
                     navigate('/')
                 }
                 else if (res.data.exists && !res.data.login) {

@@ -24,12 +24,11 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const handleSubmit = (event) =>{
-        event.preventDefault();
-        console.log('handled');
+        event.preventDefault()
         if(username && password)
         {
             setOpen(false)
-            axios.post('/register', {username: username, password: password, email: email})
+            axios.post('https://movie-hub1.herokuapp.com/register', {username: username, password: password, email: email})
             .then((res) => {console.log(res)
                 if (!res.data.found) {
                     navigate('/', { replace: true })

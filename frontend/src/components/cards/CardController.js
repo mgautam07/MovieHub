@@ -13,19 +13,19 @@ function CardController() {
     const [status, setStatus] = useState('Trending Movies');
 
     function changeNetflix(){
-      axios.get('/netflix').then(result => {
+      axios.get('https://movie-hub1.herokuapp.com/netflix').then(result => {
         setTrending(result.data.results);
         setStatus('Trending movies on Netflix');
       })}
 
     function changePrime(){
-      axios.get('/prime').then(result => {
+      axios.get('https://movie-hub1.herokuapp.com/prime').then(result => {
         setTrending(result.data.results);
         setStatus('Trending movies on Amazon Prime Video');
     })}
 
     function changeTrending(){
-      axios.get('/trending').then(result => {
+      axios.get('https://movie-hub1.herokuapp.com/trending').then(result => {
         setTrending(result.data.results);
         setStatus('Trending Movies');
     })}
