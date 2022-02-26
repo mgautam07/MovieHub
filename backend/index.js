@@ -5,7 +5,7 @@ import { Recoms } from './recoms.js'
 import { Users } from './users.js'
 import fetch from 'node-fetch'
 import bcrypt from 'bcryptjs'
-// import cors from 'cors'
+import cors from 'cors'
 import { getLatest, getPrime, getNetflixOriginalsTV, getNowPlaying, getTrending, getUpcoming} from './functions.js'
 
 // Configuring .env file
@@ -31,7 +31,7 @@ mongoose.connect(process.env.MONGO_URI, {
 const app = express();
 
 app.use(express.json());
-// app.use(cors);
+app.use(cors());
 app.use(express.urlencoded({extended: true}));
 
 app.get('/home', (req, res) => {
@@ -168,7 +168,7 @@ app.post('/MovieRecommender', async (req, res) => {
       .catch(err => {console.log(err)}); 
 })})
 
-app.listen(3000 || process.env.PORT, async () => {
+app.listen(process.env.PORT || 3000, async () => {
   console.log(`App listening at http://localhost:3000`)
   trending = await getTrending();
   nowPlaying = await getNowPlaying();

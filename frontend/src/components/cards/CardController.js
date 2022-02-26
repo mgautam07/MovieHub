@@ -31,7 +31,7 @@ function CardController() {
     })}
 
     useEffect(() => {
-      axios.get('/home').then(result => { 
+      axios.get('https://movie-hub1.herokuapp.com/home').then(result => { 
         setTrending(result.data.trending.results);
         setNowPlaying(result.data.nowPlaying.results);
         return; })

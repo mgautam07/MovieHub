@@ -1,14 +1,12 @@
 import {React, useEffect, useState} from 'react'
 import './search.css'
 import {useLocation} from 'react-router-dom'
-import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Card from './cards/Card'
-import Typography from '@mui/material/Typography'
 import axios from 'axios'
 
-function Search(props) {
+function Search() {
 
     const location = useLocation()
     const [movie, setMovie] = useState()
