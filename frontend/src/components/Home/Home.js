@@ -1,9 +1,10 @@
-import React from 'react';
-import '../all.css';
-import './home.css';
+import {React, useState} from 'react'
+import '../all.css'
+import './home.css'
 import nowshowing from'../../photos/nowshowing.jpg'
 import netflix from'../../photos/netflix.jpg'
-import CardType2 from '../cards/CardController';
+import CardType2 from '../cards/CardController'
+
 
 
 export default function Home() {
@@ -21,10 +22,6 @@ export default function Home() {
       </div>
     </div>
   </section>
-  <form>
-    <input type='text'></input>
-    <button type='submit'></button>
-  </form>
 
   <CardType2 />
 

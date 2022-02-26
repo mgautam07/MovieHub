@@ -75,6 +75,12 @@ app.get('/search/tv/:id', async (req, res) => {
   res.send(show);
 })
 
+app.get('/homesearch/:query', async(req, res) => {
+  let movies = await fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.params.query +'&page=1&include_adult=true').then(m1 => {return m1.json()})
+  let shows = await fetch('https://api.themoviedb.org/3/search/tv?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.params.query +'&page=1&include_adult=true').then(m1 => {return m1.json()})
+  res.send({movies, shows})
+})
+
 app.post('/register', async (req, res) =>{
   console.log(req.body.password);
   const user1 = await Users.findOne({
@@ -135,8 +141,6 @@ app.post('/login', async (req, res) => {
 app.post('/MovieRecommender', async (req, res) => {
   // const recom = new Recoms(req.body);
   console.log(req.body);
-
-  var m =[];
   const recom1 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie1 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
     const recom2 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie2 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
     const recom3 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie3 +'&page=1&include_adult=true').then(m1 => {return m1.json()})

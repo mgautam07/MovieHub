@@ -18,6 +18,7 @@ const Login=()=>{
 
     const navigate = useNavigate()
     const {username, setUsername} = useContext(LoginContext)
+    const {favorites, setFavorites} = useContext(LoginContext)
     const [usernameLocal, setUsernameLocal] = useState();
     const [password, setPassword] = useState();
     const [open, setOpen] = useState(false);
@@ -34,6 +35,8 @@ const Login=()=>{
                 if (res.data.exists && res.data.login) {
                     setOpen(false)
                     setUsername(usernameLocal)
+                    setFavorites(res.data.favorites)
+                    console.log(res.data.favorites)
                     navigate('/')
                 }
                 else if (res.data.exists && !res.data.login) {

@@ -18,21 +18,6 @@ export default function Navbar() {
   }
 
   return (
-
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <AppBar position="static">
-    //     <Toolbar variant="dense">
-    //       {/* <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-    //         <MenuIcon />
-    //       </IconButton> */}
-    //       <Button variant="text" 
-    //       color="error"
-    //       >Trending</Button>         
-    //       <Button variant="outlined">Latest</Button>         
-    //       <Button variant="outlined">Company</Button>         
-    //     </Toolbar>
-    //   </AppBar>
-    // </Box>
     <div className='navbar'>
       <div className="logo">
         <Link to="/" className="logo-img">
@@ -44,7 +29,7 @@ export default function Navbar() {
       {/* <Link to="/" className="movie-hub"></Link> */}
       <ul className="nav-links">
       <input type="checkbox" id="checkbox_toggle" />
-      <label for="checkbox_toggle" className="hamburger">&#9776;</label>
+      <label htmlFor="checkbox_toggle" className="hamburger">&#9776;</label>
       <div className='menu'>
         <li>
           <NavLink className="nav-link" to="/">Latest</NavLink>
@@ -54,6 +39,9 @@ export default function Navbar() {
         </li>
         <li>
           <Link className="nav-link" to="/MovieRecommender">Movie Recommender</Link>
+        </li>
+        <li>
+          <Link className="nav-link" to="/query">Search</Link>
         </li>
         {username ?
         <>

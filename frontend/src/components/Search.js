@@ -5,9 +5,10 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Card from './cards/Card'
+import Typography from '@mui/material/Typography'
 import axios from 'axios'
 
-function Search() {
+function Search(props) {
 
     const location = useLocation()
     const [movie, setMovie] = useState()
@@ -36,12 +37,13 @@ function Search() {
       // <Container>
       // <div>Search{location.state.id}</div>
     <Box sx={{ margin: 4 }}>
+        {/* <Typography sx={{mt: 3}} variant="h4" color="secondary"> Search for a movie/show here</Typography> */}
         <Grid container spacing={2}>
-            <Grid item xs={10} s={9} md={9} lg={9}>
-                <TextField fullWidth id="outlined-basic" placeholder="Seacrh" variant="outlined" margin="normal"/>
+            <Grid item xs={12} s={12} md={9} lg={9}>
+                {/* <TextField fullWidth id="outlined-basic" placeholder="Seacrh" variant="outlined" margin="normal"/> */}
                 {movie ? <Card movie={movie}/> : <></>}
             </Grid>
-            <Grid item lg={3}>
+            <Grid item lg={3} md={3} s={12} xs={12}>
                 bot
             </Grid>
         </Grid>

@@ -12,14 +12,16 @@ import { LoginContext } from './contexts/LoginContexts';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Signup from './components/Signup';
 import Search from './components/Search';
+import Query from './components/Home/Query';
 // import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 
 function App() {
 
-  const [username, setUsername] = useState();
+  const [username, setUsername] = useState()
+  const [favorites, setFavorites] = useState([])
 
   return (
-    <LoginContext.Provider value={{ username, setUsername }}>
+    <LoginContext.Provider value={{ username, setUsername, favorites, setFavorites }}>
       <BrowserRouter>
         <NavBar/>
         <Routes>
@@ -31,6 +33,7 @@ function App() {
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/search' element={<Search />} />
+          <Route exact path='/query' element={<Query />} />
         </Routes>
       </BrowserRouter>
     {/* <Footer/> */}

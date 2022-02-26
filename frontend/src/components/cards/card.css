@@ -5,7 +5,7 @@ body {
   margin: 0;
   background: rgb(255, 247, 247);
   font-family: "Montserrat", helvetica, arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -76,6 +76,7 @@ body {
 .movie_desc .text {
   color: #cfd6e1;
   margin: 5px;
+  font-size: 18px;
 }
 .movie_social {
   height: 10%;
