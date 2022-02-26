@@ -10,7 +10,7 @@ const lblue = lightBlue[600]
 
 function Favorites() {
 
-  const {favorites, setFavorites} = useContext(LoginContext)
+  const {favorites} = useContext(LoginContext)
   const [movies, setMovies] = useState([])
 
  

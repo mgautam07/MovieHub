@@ -8,13 +8,11 @@ import MovieRecommender from './components/MovieRecommender';
 import Upcoming from './components/Upcoming.js';
 import Login from './components/Login.js';
 import { LoginContext } from './contexts/LoginContexts';
-
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Signup from './components/Signup';
 import Search from './components/Search';
 import Query from './components/Home/Query';
 import Favorites from './components/Favorites';
-// import {BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 
 function App() {
 
@@ -27,7 +25,6 @@ function App() {
         <NavBar/>
         <Routes>
           <Route exact path='/' element={<Home />} />
-          {/* <Route exact path='/latest' element={<Navigate replace to='/latest/netflix' />} /> */}
           <Route exact path='/about' element={<Home />} />
           <Route exact path='/upcoming' element={<Upcoming />} />
           <Route exact path='/MovieRecommender' element={<MovieRecommender />} />

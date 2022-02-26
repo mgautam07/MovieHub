@@ -2,7 +2,7 @@ import {React, useState} from 'react';
 import Form from './Home/Form';
 import CardType2 from './cards/CardType2';
 import Grid from '@mui/material/Grid';
-import { Typography, Button, Container } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { lightBlue } from '@mui/material/colors';
 
 const lblue = lightBlue[600];
