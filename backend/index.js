@@ -35,12 +35,12 @@ app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({extended: true}))
 
-const job = cron.schedule('0 * * * *', () => {
-  trending = getTrending()
-  nowPlaying = getNowPlaying()
-  upcoming = getUpcoming()
-  prime = getPrime()
-  netflixTV = getNetflixOriginalsTV()
+const job = cron.schedule('0 * * * *', async() => {
+  trending = await getTrending()
+  nowPlaying = await getNowPlaying()
+  upcoming = await getUpcoming()
+  prime = await getPrime()
+  netflixTV = await getNetflixOriginalsTV()
 })
 
 app.get('/home', (req, res) => {
