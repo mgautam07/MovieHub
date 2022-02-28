@@ -7,9 +7,10 @@ import fetch from 'node-fetch'
 import bcrypt from 'bcryptjs'
 import cors from 'cors'
 import { getLatest, getPrime, getNetflixOriginalsTV, getNowPlaying, getTrending, getUpcoming} from './functions.js'
+import cron from 'node-cron'
 
 // Configuring .env file
-dotenv.config();
+dotenv.config()
 let trending
 let nowPlaying
 let upcoming
@@ -28,22 +29,30 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch((err) => console.log(err))
 
 
-const app = express();
+const app = express()
 
-app.use(express.json());
-app.use(cors());
-app.use(express.urlencoded({extended: true}));
+app.use(express.json())
+app.use(cors())
+app.use(express.urlencoded({extended: true}))
+
+const job = cron.schedule('0 * * * *', () => {
+  trending = getTrending()
+  nowPlaying = getNowPlaying()
+  upcoming = getUpcoming()
+  prime = getPrime()
+  netflixTV = getNetflixOriginalsTV()
+})
 
 app.get('/home', (req, res) => {
   res.send({nowPlaying, trending})
 })
 
 app.get('/trending', (req, res) => {
-  res.send(trending);
+  res.send(trending)
 })
 
 app.get('/upcoming', (req,res) => {
-  res.send(upcoming);
+  res.send(upcoming)
 })
 
 app.get('/prime', (req, res) => {
@@ -56,12 +65,12 @@ app.get('/netflix', (req, res) => {
 
 app.get('/search/movie/:id', async (req, res) => {
   const movie = await (await fetch('https://api.themoviedb.org/3/movie/' +req.params.id+ '?api_key=' + process.env.MDB_API + '&language=en-US')).json()
-  res.send(movie);
+  res.send(movie)
 })
 
 app.get('/search/tv/:id', async (req, res) => {
   const show = await (await fetch('https://api.themoviedb.org/3/tv/' +req.params.id+ '?api_key=' + process.env.MDB_API + '&language=en-US')).json()
-  res.send(show);
+  res.send(show)
 })
 
 app.get('/homesearch/:query', async(req, res) => {
@@ -74,6 +83,10 @@ app.post('/favorites/show', async(req, res) => {
   let movies = []
   for (let i = 0; i < req.body.favorites.length; i++) {
     let movie = await fetch('https://api.themoviedb.org/3/movie/' + req.body.favorites[i] + '?api_key=' + process.env.MDB_API + '&language=en-US').then(m1 => {return m1.json()})
+    if (movie.status_code === 34){
+      console.log(movie.status_code)
+      movie = await fetch('https://api.themoviedb.org/3/tv/' + req.body.favorites[i] + '?api_key=' + process.env.MDB_API + '&language=en-US').then(m1 => {return m1.json()})
+    }
     movies.push(movie)
   }
   res.send(movies)
@@ -140,30 +153,31 @@ app.post('/login', async (req, res) => {
 
 app.post('/MovieRecommender', async (req, res) => {
   const recom1 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie1 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
-    const recom2 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie2 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
-    const recom3 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie3 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
-    const recom4 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie4 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
-    const recom5 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie5+'&page=1&include_adult=true').then(m1 => {return m1.json()})
-    Promise.all([recom1, recom2, recom3, recom4, recom5])
-    .then(files =>{
-      let recom1res = fetch('https://api.themoviedb.org/3/movie/' + files[0].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)});
-      let recom2res = fetch('https://api.themoviedb.org/3/movie/' + files[1].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)});
-      let recom3res = fetch('https://api.themoviedb.org/3/movie/' + files[2].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)});
-      let recom4res = fetch('https://api.themoviedb.org/3/movie/' + files[3].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)});
-      let recom5res = fetch('https://api.themoviedb.org/3/movie/' + files[4].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)});
+  const recom2 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie2 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
+  const recom3 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie3 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
+  const recom4 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie4 +'&page=1&include_adult=true').then(m1 => {return m1.json()})
+  const recom5 = fetch('https://api.themoviedb.org/3/search/movie?api_key=' + process.env.MDB_API + '&language=en-US&query='+ req.body.movie5+'&page=1&include_adult=true').then(m1 => {return m1.json()})
+  Promise.all([recom1, recom2, recom3, recom4, recom5])
+  .then(files =>{
+    let recom1res = fetch('https://api.themoviedb.org/3/movie/' + files[0].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)})
+    let recom2res = fetch('https://api.themoviedb.org/3/movie/' + files[1].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)})
+    let recom3res = fetch('https://api.themoviedb.org/3/movie/' + files[2].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)})
+    let recom4res = fetch('https://api.themoviedb.org/3/movie/' + files[3].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)})
+    let recom5res = fetch('https://api.themoviedb.org/3/movie/' + files[4].results[0].id + '/recommendations?api_key=' + process.env.MDB_API + '&language=en-US&page=1').then(m1 => {return m1.json()}).catch(err => {console.log(err)})
 
-      Promise.all([recom1res, recom2res, recom3res, recom4res, recom5res])
-      .then((data) => {
-            res.send(data);
-      })
-      .catch(err => {console.log(err)}); 
+    Promise.all([recom1res, recom2res, recom3res, recom4res, recom5res])
+    .then((data) => {
+          res.send(data)
+    })
+    .catch(err => {console.log(err)})
 })})
 
 app.listen(process.env.PORT || 3000, async () => {
   console.log(`App listening at http://localhost:3000`)
-  trending = await getTrending();
-  nowPlaying = await getNowPlaying();
-  upcoming = await getUpcoming();
+  job.start()
+  trending = await getTrending()
+  nowPlaying = await getNowPlaying()
+  upcoming = await getUpcoming()
   prime = await getPrime()
-  netflixTV = await getNetflixOriginalsTV();
+  netflixTV = await getNetflixOriginalsTV()
 })

@@ -7,6 +7,8 @@ backend/.git
 .env
 
 frontend/.env
+frontend/.git
+frontend/.gitignore
 
 # dependencies
 frontend/node_modules
