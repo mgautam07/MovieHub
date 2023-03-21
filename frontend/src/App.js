@@ -2,7 +2,6 @@ import './App.css';
 // import http from "./http-common";
 import { useState } from 'react';
 import Home from './components/Home/Home.js'
-import Footer from './components/Footer.js';
 import NavBar from './components/Navbar.js';
 import MovieRecommender from './components/MovieRecommender';
 import Upcoming from './components/Upcoming.js';

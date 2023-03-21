@@ -16,6 +16,7 @@ let upcoming
 let netflixTV
 let prime
 
+mongoose.set('strictQuery', true);
 // Connecting to db
 
 mongoose.connect(process.env.MONGO_URI, {
