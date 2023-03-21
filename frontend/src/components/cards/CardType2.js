@@ -42,7 +42,7 @@ function CardType2(props) {
       setFavorites(filteredarray)
       setFav(false)
     }
-    axios.post('https://movie-hub1.herokuapp.com/favorites/update', {"username": username, "favorites": favorites})
+    axios.post('https://moviehub-b6ca.onrender.com/favorites/update', {"username": username, "favorites": favorites})
     .then((result) => {
       return result
     })

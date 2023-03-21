@@ -11,7 +11,7 @@ const lblue = lightBlue[600]
 function Upcoming() {
   const [movie, setMovie] = useState([]);
   useEffect(() => {
-    axios.get('https://movie-hub1.herokuapp.com/upcoming').then(result => { 
+    axios.get('https://moviehub-b6ca.onrender.com/upcoming').then(result => { 
       setMovie(result.data.results);
       return result.data.results; })
   }, []);

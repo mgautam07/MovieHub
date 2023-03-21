@@ -28,7 +28,7 @@ const Signup = () => {
         if(username && password)
         {
             setOpen(false)
-            axios.post('https://movie-hub1.herokuapp.com/register', {username: username, password: password, email: email})
+            axios.post('https://moviehub-b6ca.onrender.com/register', {username: username, password: password, email: email})
             .then((res) => {console.log(res)
                 if (!res.data.found) {
                     navigate('/', { replace: true })

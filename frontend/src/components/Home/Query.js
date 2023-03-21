@@ -14,7 +14,7 @@ function Query() {
   
   const [search, setSearch] = useState('')
   const handleSearch = () => {
-    axios.get(`https://movie-hub1.herokuapp.com/homesearch/${search}`, { params: { query: search } })
+    axios.get(`https://moviehub-b6ca.onrender.com/homesearch/${search}`, { params: { query: search } })
     .then((result) => {
         setMovies(result.data.movies.results)
         setShows(result.data.shows.results)

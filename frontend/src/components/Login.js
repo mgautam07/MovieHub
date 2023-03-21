@@ -30,7 +30,7 @@ const Login=()=>{
         if(usernameLocal && password)
         {
             setOpen(false)
-            axios.post('https://movie-hub1.herokuapp.com/login', {username: usernameLocal, password: password})
+            axios.post('https://moviehub-b6ca.onrender.com/login', {username: usernameLocal, password: password})
             .then((res) => {
                 if (res.data.exists && res.data.login) {
                     setOpen(false)

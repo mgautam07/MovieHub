@@ -14,7 +14,7 @@ function Form({setMovies}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (movie1 !== '' && movie2 !== '' && movie3 !== '' && movie4 !== '' && movie5 !== '') {
-      axios.post('https://movie-hub1.herokuapp.com/MovieRecommender', {movie1: movie1, movie2: movie2, movie3: movie3, movie4: movie4, movie5: movie5})
+      axios.post('https://moviehub-b6ca.onrender.com/MovieRecommender', {movie1: movie1, movie2: movie2, movie3: movie3, movie4: movie4, movie5: movie5})
       .then((dat) => {
         setMovies(dat.data);
         return dat;})

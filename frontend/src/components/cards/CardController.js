@@ -13,25 +13,25 @@ function CardController() {
     const [status, setStatus] = useState('Trending Movies');
 
     function changeNetflix(){
-      axios.get('https://movie-hub1.herokuapp.com/netflix').then(result => {
+      axios.get('https://moviehub-b6ca.onrender.com/netflix').then(result => {
         setTrending(result.data.results);
         setStatus('Trending movies on Netflix');
       })}
 
     function changePrime(){
-      axios.get('https://movie-hub1.herokuapp.com/prime').then(result => {
+      axios.get('https://moviehub-b6ca.onrender.com/prime').then(result => {
         setTrending(result.data.results);
         setStatus('Trending movies on Amazon Prime Video');
     })}
 
     function changeTrending(){
-      axios.get('https://movie-hub1.herokuapp.com/trending').then(result => {
+      axios.get('https://moviehub-b6ca.onrender.com/trending').then(result => {
         setTrending(result.data.results);
         setStatus('Trending Movies');
     })}
 
     useEffect(() => {
-      axios.get('https://movie-hub1.herokuapp.com/home').then(result => { 
+      axios.get('https://moviehub-b6ca.onrender.com/home').then(result => { 
         setTrending(result.data.trending.results);
         setNowPlaying(result.data.nowPlaying.results);
         return; })
