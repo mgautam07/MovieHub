@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGO_URI, {
 const app = express();
 
 app.use(express.json());
-// app.use(cors());
+app.use(cors());
 app.use(express.urlencoded({extended: true}));
 
 app.get('/home', (req, res) => {
@@ -160,7 +160,7 @@ app.post('/MovieRecommender', async (req, res) => {
       .catch(err => {console.log(err)}); 
 })})
 
-app.listen(process.env.PORT || 3000, async () => {
+app.listen(process.env.PORT || 3001, async () => {
   console.log(`App listening at http://localhost:3000`)
   trending = await getTrending();
   nowPlaying = await getNowPlaying();
